@@ -1,0 +1,465 @@
+<html><head><base href="https://recetas-deliciosas.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas Deliciosas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --background-color: #f7fff7;
+            --text-color: #2d3436;
+            --font-main: 'Lato', sans-serif;
+            --font-accent: 'Merriweather', serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        #home {
+            background-color: #fff5f5;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .recipe-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-button:hover {
+            background-color: #45b7aa;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 1.5rem;
+        }
+
+        .recipe-title {
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .recipe-link {
+            display: inline-block;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .recipe-link:hover {
+            color: var(--primary-color);
+        }
+
+        .load-more {
+            display: block;
+            width: 200px;
+            margin: 2rem auto 0;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .load-more:hover {
+            background-color: #ff5252;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        #blog .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        #contact form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #contact input, #contact textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #contact button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+
+            .recipe-filters {
+                flex-wrap: wrap;
+            }
+
+            .filter-button {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Recetas Deliciosas</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#recipes">Recetas</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="container">
+            <h1 class="page-title">Bienvenidos a Recetas Deliciosas</h1>
+            <p>Descubre un mundo de sabores y aromas en nuestra colección de recetas.</p>
+        </section>
+
+        <section id="recipes" class="container">
+            <h2 class="page-title">Nuestras Recetas</h2>
+            
+            <div class="recipe-filters">
+                <button class="filter-button" data-filter="all">Todas</button>
+                <button class="filter-button" data-filter="plato-principal">Plato Principal</button>
+                <button class="filter-button" data-filter="ensaladas">Ensaladas</button>
+                <button class="filter-button" data-filter="postres">Postres</button>
+                <button class="filter-button" data-filter="bebidas">Bebidas</button>
+            </div>
+            
+            <div class="recipe-grid">
+                <div class="recipe-card" data-category="plato-principal">
+                    <img src="https://replicate.delivery/yhqm/9azexoHqA7SIdy0gbCM0VqcIo5ImU6Tb5oq07BXuTEHEbFvJA/out-0.webp" alt="Pasta Primavera" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Pasta Primavera</h3>
+                        <p class="recipe-description">Una deliciosa pasta llena de vegetales frescos y sazonada con hierbas aromáticas.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 30 min</span>
+                            <span>Dificultad: Fácil</span>
+                        </div>
+                        <a href="/recetas/pasta-primavera" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card" data-category="plato-principal">
+                    <img src="https://replicate.delivery/yhqm/ciXFjNTKJrbnC1GC7MK5fbcNEz40b70WvqQwghbbhCNEbFvJA/out-0.webp" alt="Pollo al Limón" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Pollo al Limón</h3>
+                        <p class="recipe-description">Un plato ligero y refrescante, perfecto para una cena de verano.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 45 min</span>
+                            <span>Dificultad: Media</span>
+                        </div>
+                        <a href="/recetas/pollo-al-limon" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card" data-category="postres">
+                    <img src="https://replicate.delivery/yhqm/RWa8QbGC6Z6iGFbEKLmumhzeE1eOxBKeuLYoHAgQ4HlUsV8mA/out-0.webp" alt="Tarta de Manzana" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Tarta de Manzana</h3>
+                        <p class="recipe-description">Un clásico postre casero que nunca pasa de moda. Perfecta para cualquier ocasión.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 1h 30min</span>
+                            <span>Dificultad: Media</span>
+                        </div>
+                        <a href="/recetas/tarta-manzana" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card" data-category="ensaladas">
+                    <img src="https://replicate.delivery/yhqm/pZZehhXKsvVuUSD7HtoZskHQbCkTQfUigktXhTir9O2I2KemA/out-0.webp" alt="Ensalada de Quinoa" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Ensalada de Quinoa</h3>
+                        <p class="recipe-description">Una ensalada nutritiva y llena de sabor, ideal para una comida ligera y saludable.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 20 min</span>
+                            <span>Dificultad: Fácil</span>
+                        </div>
+                        <a href="/recetas/ensalada-quinoa" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card" data-category="bebidas">
+                    <img src="https://replicate.delivery/yhqm/f2VK9emq7Wkq9kmKMY1YiCPf04fmeUFnwCZPXg0W8NSLxWxbC/out-0.webp" alt="Smoothie Verde" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Smoothie Verde</h3>
+                        <p class="recipe-description">Una bebida refrescante y llena de nutrientes para comenzar el día con energía.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 10 min</span>
+                            <span>Dificultad: Fácil</span>
+                        </div>
+                        <a href="/recetas/smoothie-verde" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card" data-category="plato-principal">
+                    <img src="https://replicate.delivery/yhqm/sdQRfpUudM3LHqIxeHF7qr2V2dc2jLlPIGA88iCemc7RsV8mA/out-0.webp" alt="Risotto de Champiñones" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Risotto de Champiñones</h3>
+                        <p class="recipe-description">Un plato cremoso y reconfortante con el sabor intenso de los champiñones.</p>
+                        <div class="recipe-meta">
+                            <span>Tiempo: 40 min</span>
+                            <span>Dificultad: Media</span>
+                        </div>
+                        <a href="/recetas/risotto-champiñones" class="recipe-link">Ver Receta</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="load-more" id="loadMore">Cargar más recetas</a>
+        </section>
+
+        <section id="blog" class="container">
+            <h2 class="page-title">Blog de Cocina</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://replicate.delivery/yhqm/9XsvefYiYMmoN0yqPDBFOuCfxf8ag417tGXLQlf2UzoGxWxbC/out-0.webp" alt="Técnicas de cocina" class="blog-image">
+                    <div class="blog-content">
+                        <h3>5 Técnicas de Cocina que Debes Dominar</h3>
+                        <p>Descubre las técnicas esenciales que todo cocinero debería conocer...</p>
+                        <a href="#" class="recipe-link">Leer más</a>
+                    </div>
+                </div>
+                <!-- Add more blog posts as needed -->
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2 class="page-title">Contáctanos</h2>
+            <form>
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Recetas Deliciosas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const recipeCards = document.querySelectorAll('.recipe-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                recipeCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        const loadMoreButton = document.getElementById('loadMore');
+        let clickCount = 0;
+
+        loadMoreButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            clickCount++;
+
+            if (clickCount >= 2) {
+                loadMoreButton.style.display = 'none';
+                return;
+            }
+
+            const recipeGrid = document.querySelector('.recipe-grid');
+            const existingCards = document.querySelectorAll('.recipe-card');
+            
+            existingCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                recipeGrid.appendChild(clone);
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
